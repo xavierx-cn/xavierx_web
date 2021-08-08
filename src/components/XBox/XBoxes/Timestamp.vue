@@ -131,11 +131,11 @@ export default defineComponent({
       let tsu = this.toStringTime.timeUnit;
       let ts = this.toStringTime.timestamp;
       let timeFormat = moment.defaultFormat
-      if (tsu == 1) {
+      if (tsu === 1) {
         ts *= 1000;
-      } else if (tsu == 2) {
+      } else if (tsu === 2) {
         ts *= 1;
-      } else if (tsu == 3) {
+      } else if (tsu === 3) {
         ts /= 100000;
       }
 
@@ -147,11 +147,11 @@ export default defineComponent({
       let tsu = this.toTimestamp.timeUnit;
       let st = this.toTimestamp.stringTime;
 
-      if (tsu == 1) {
+      if (tsu === 1) {
         this.toTimestamp.timestamp = moment(st).format("X");
-      } else if (tsu == 2) {
+      } else if (tsu === 2) {
         this.toTimestamp.timestamp = moment(st).format("x");
-      } else if (tsu == 3) {
+      } else if (tsu === 3) {
         this.toTimestamp.timestamp = moment(st).format("x") * 1000000;
       }
     },
