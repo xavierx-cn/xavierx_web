@@ -54,7 +54,7 @@
     </div>
 
     <!-- 字符串转时间戳 -->
-    <div id="strimgTransTs" class="row">
+    <div id="stringTransTs" class="row">
       <el-row :gutter="20">
         <el-col :span="6"
           ><div class="grid-content bg-purple">
@@ -92,9 +92,10 @@
   </div>
 </template>
 
+<!--suppress JSIncompatibleTypesComparison -->
 <script>
 import { defineComponent, ref } from "vue";
-import moment from "moment";
+import Moment from "moment";
 
 export default defineComponent({
   name: "Timestamp",
@@ -130,7 +131,9 @@ export default defineComponent({
     transToStringTime() {
       let tsu = this.toStringTime.timeUnit;
       let ts = this.toStringTime.timestamp;
-      let timeFormat = moment.defaultFormat
+      let timeFormat = Moment.defaultFormat
+
+      // noinspection JSIncompatibleTypesComparison
       if (tsu === 1) {
         ts *= 1000;
       } else if (tsu === 2) {
@@ -139,7 +142,7 @@ export default defineComponent({
         ts /= 100000;
       }
 
-      this.toStringTime.stringTime = moment(ts).format(timeFormat);
+      this.toStringTime.stringTime = Moment.moment(ts).format(timeFormat);
     },
 
     // 字符串时间转换成时间戳
@@ -148,17 +151,17 @@ export default defineComponent({
       let st = this.toTimestamp.stringTime;
 
       if (tsu === 1) {
-        this.toTimestamp.timestamp = moment(st).format("X");
+        this.toTimestamp.timestamp = Moment.moment(st).format("X");
       } else if (tsu === 2) {
-        this.toTimestamp.timestamp = moment(st).format("x");
+        this.toTimestamp.timestamp = Moment.moment(st).format("x");
       } else if (tsu === 3) {
-        this.toTimestamp.timestamp = moment(st).format("x") * 1000000;
+        this.toTimestamp.timestamp = Moment.moment(st).format("x") * 1000000;
       }
     },
 
     // 更新当前时间
     updateNow() {
-      var now = moment();
+      let now = Moment();
       this.timeNow.timestamp = now.unix();
       this.timeNow.stringTime = now.format();
     },
