@@ -10,7 +10,7 @@
         </el-col>
         <el-col :span="6">
           <div>
-            <el-button type="primary" @click="updateNow">更新</el-button>
+            <el-button type="primary" @click="updateNow">刷新</el-button>
           </div>
         </el-col>
       </el-row>
