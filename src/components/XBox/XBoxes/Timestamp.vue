@@ -128,8 +128,9 @@ export default defineComponent({
   methods: {
     // 时间戳转换成字符串时间
     transToStringTime() {
-      let tsu = this.toStringTIme.timeUnit;
+      let tsu = this.toStringTime.timeUnit;
       let ts = this.toStringTime.timestamp;
+      let timeFormat = moment.defaultFormat
       if (tsu == 1) {
         ts *= 1000;
       } else if (tsu == 2) {
@@ -138,7 +139,7 @@ export default defineComponent({
         ts /= 100000;
       }
 
-      this.toStringTime.stringTime = moment(ts).format();
+      this.toStringTime.stringTime = moment(ts).format(timeFormat);
     },
 
     // 字符串时间转换成时间戳
@@ -147,11 +148,11 @@ export default defineComponent({
       let st = this.toTimestamp.stringTime;
 
       if (tsu == 1) {
-        this.toTimestamp.timestamp = moment(st).unix();
+        this.toTimestamp.timestamp = moment(st).format("X");
       } else if (tsu == 2) {
-        this.toTimestamp.timestamp = moment(st).valueOf();
+        this.toTimestamp.timestamp = moment(st).format("x");
       } else if (tsu == 3) {
-        this.toTimestamp.timestamp = moment(st).valueOf() * 1000000;
+        this.toTimestamp.timestamp = moment(st).format("x") * 1000000;
       }
     },
 
