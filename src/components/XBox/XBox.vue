@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import Timestamp from "./XBoxes/Timestamp.vue";
 
 export default defineComponent({
@@ -24,7 +24,16 @@ export default defineComponent({
   setup() {},
   mounted() {},
   data() {
-    return {};
+    return {
+        xBoxes: [
+            {
+                lablel: "时间戳",
+                name: "timestamp",
+                component: Timestamp,
+            },
+        ],
+        activeName: ref()
+    };
   },
   methods: {},
 });
