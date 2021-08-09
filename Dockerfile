@@ -3,7 +3,6 @@ FROM node:16-alpine3.11 as builder
 # env set
 ENV EVA_ENTRYPOINT=/api
 
-
 WORKDIR /
 COPY package.json /
 RUN yarn

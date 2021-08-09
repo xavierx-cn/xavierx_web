@@ -1,45 +1,61 @@
 <template>
  
   <!-- <h1>XBox</h1> -->
-  <el-tabs v-model="activeName" @tab-click="handleClick">
-    <el-tab-pane label="时间戳" name="timestamp">
-        <Timestamp/>
-    </el-tab-pane>
-    <el-tab-pane label="翻译" name="translation">
-      <Timestamp/>
-    </el-tab-pane>
+  <el-row class="tac" :gutter="30">
+    <el-col :span="3">
+    <el-menu
+        :default-active="activeIndex"
+        class="el-menu-demo"
+        mode="vertical"
+        @select="handleSelect"
+    >
+      <el-menu-item index="1" @click="toTimestamp">
+        <i class="el-icon-time"></i>
+        <template #title>时间戳</template>
+      </el-menu-item>
+      <el-menu-item index="2" @click="toTranslation">
+        <i class="el-icon-document"></i>
+        <template #title>翻译</template>
+      </el-menu-item>
+      <el-menu-item index="3">
+      </el-menu-item>
+    </el-menu>
+    </el-col>
+    <el-col :span="20">
+      <router-view></router-view>
+    </el-col>
+  </el-row>
 
-    <!-- <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
-    <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-    <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane> -->
-  </el-tabs>
+
 
 </template>
 
 <script>
 import { defineComponent, ref } from "vue";
-import Timestamp from "./XBoxes/Timestamp.vue";
 
 export default defineComponent({
   name: "XBox",
   components: {
-      Timestamp
   },
   setup() {},
   mounted() {},
   data() {
     return {
         xBoxes: [
-            {
-                lablel: "时间戳",
-                name: "timestamp",
-                component: Timestamp,
-            },
+
         ],
         activeName: ref()
     };
   },
-  methods: {},
+  methods: {
+    toTimestamp() {
+      this.$router.push({path: "/xbox/timestamp"})
+    },
+    toTranslation() {
+      console.log("timestamp")
+      this.$router.push({path: "/xbox/translation"})
+    }
+  },
 });
 </script>
 
